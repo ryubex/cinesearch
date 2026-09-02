@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { motion } from "framer-motion"
+import { motion, moveItem } from "framer-motion"
 import { Search } from "lucide-react"
 
 function App() {
@@ -7,7 +7,9 @@ function App() {
   const [query, setQuery] = useState("")
   const [loading, setLoading] = useState(false)
 
-  async function testTMDB() {
+  
+  
+    async function testTMDB() {
     const options = {
       method: 'GET',
       headers: {
@@ -16,14 +18,15 @@ function App() {
       }
     };
 
-    fetch('https://api.themoviedb.org/3/search/movie?query=Inception', options)
+    fetch('https://api.themoviedb.org/3/search/movie?query=Avatar', options)
       .then(res => res.json())
       .then(res => console.log(res))
       .catch(err => console.error(err));
 
   }
 
-testTMDB();
+    testTMDB();
+  
 
 
 
@@ -61,19 +64,52 @@ testTMDB();
             </button>
           </div>
 
-          {/* Main Content */}
-          <div className=''>
 
-            {/* Movie Image */}
-            <div className=''>
+          
+          
+          {/*<div 
+            className='relative bg-cover bg-center'
+            style = {{ 
+              backgroundImage = `url(gttps://image.tmdb.org/t/p/original${movie.backrdop_path})` 
+            }}
+          >
 
+            
+            <div className='absolute inset-0 bg-black/60' />
+
+            
+            <div className='relative flex gap-8 p-8'>
+
+              
+              <div className='w-48 shrink-0'>
+                <img 
+                  src = { `https://image.tmdb.org/t/p/w500${movie.poster_path}` }  
+                  alt = {movie.title}
+                  className='w-full rounded-lg' 
+                />
+              </div>
+
+              
+              <div className='flex-1 text-white'>
+
+                
+                <h1 className='text-4xl font-bold'>
+                  {movie.title}
+                </h1>
+
+                
+                <div className='mt-4 flex items-center gap-3'>
+                  <span>⭐ {movie.vote_average}/10</span>
+                  <span>•</span>
+                  <span>{movie.release_date?.slice(0, 4)}</span>
+                  <span>•</span>
+                  <span></span>
+                </div>
+
+              </div>
+          
             </div>
-
-            {/* Movie Details */}
-            <div className=''>
-
-            </div>
-          </div>
+          </div>*/}
 
         </motion.div>
       </div>
