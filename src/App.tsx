@@ -3,11 +3,7 @@ import { motion, moveItem } from "framer-motion"
 import { Search } from "lucide-react"
 
 import { genres } from './genre'
-
-
-interface MovieData {
-  
-}
+import { searchMovies, type Movie } from './API/tmdb'
 
 
 function App() {
@@ -15,7 +11,7 @@ function App() {
   const [query, setQuery] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [movie, setMovies] = useState<MovieData | null>(null)
+  const [movie, setMovie] = useState<Movie | null>(null)
 
   
   { /*  FOR TESTING API
@@ -38,7 +34,9 @@ function App() {
     testTMDB();
   */ }
 
-  const searchMovies = async (query:string) => {
+
+    {/* API Usage */}
+  const searchMovie = async (query:string) => {
     setLoading(true)
     setError(null)
 
@@ -56,18 +54,27 @@ function App() {
 
       if (!response.ok) {
         setError("Failed to fetch movies")
-        setMovies([])
+        setMovie([])
         return
       }
 
       const data = await response.json()
 
-      setMovies(data.results)
+      setMovie(data.results)
     } catch (error) {
       setError("Failed to connect to the movie service.")
     } finally {
       setLoading(false)
     }
+  }
+
+  {/* For user search */}
+
+  const handleSearch = () => {
+    if(!query) return
+    setMovie(query)
+    searchMovie(query)
+    setQuery
   }
 
   {/* For fetching movie genres */}
