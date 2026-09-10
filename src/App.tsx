@@ -11,70 +11,20 @@ function App() {
   const [query, setQuery] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [movie, setMovie] = useState<Movie | null>(null)
+  const [movie, setMovie] = useState<Movie[]>([])
 
   
-  { /*  FOR TESTING API
-    async function testTMDB() {
-    const options = {
-      method: 'GET',
-      headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMDM3MWMxZWU4ZDZiNzY4OTcyYjg0YWY5YjBmYzcwNSIsIm5iZiI6MTc4ODE3MDkyMC41OTM5OTk5LCJzdWIiOiI2YTk1NTJhOGRjYjdkYmZiODE1YWU0OWIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.ow3OqqRCtVnKE8iQNPH5j1lGb6Ne1RpWnfIuKHzpdpk'
-      }
-    };
-
-    fetch('https://api.themoviedb.org/3/search/movie?query=Avatar', options)
-      .then(res => res.json())
-      .then(res => console.log(res))
-      .catch(err => console.error(err));
-
-  }
-
-    testTMDB();
-  */ }
-
-
     {/* API Usage */}
-  const searchMovie = async (query:string) => {
-    setLoading(true)
-    setError(null)
-
+  const handleSearch = async () => {
+    if (!query) return
     try {
-      const response = await fetch (
-        `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(query)}`,
-        {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMDM3MWMxZWU4ZDZiNzY4OTcyYjg0YWY5YjBmYzcwNSIsIm5iZiI6MTc4ODE3MDkyMC41OTM5OTk5LCJzdWIiOiI2YTk1NTJhOGRjYjdkYmZiODE1YWU0OWIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.ow3OqqRCtVnKE8iQNPH5j1lGb6Ne1RpWnfIuKHzpdpk`
-          }
-        }
-      )
+      const movies = await searchMovies(query)
 
-      if (!response.ok) {
-        setError("Failed to fetch movies")
-        setMovie([])
-        return
-      }
-
-      const data = await response.json()
-
-      setMovie(data.results)
+      setMovie(movies)
     } catch (error) {
       setError("Failed to connect to the movie service.")
-    } finally {
-      setLoading(false)
     }
-  }
-
-  {/* For user search */}
-
-  const handleSearch = () => {
-    if(!query) return
-    setMovie(query)
-    searchMovie(query)
-    setQuery
+    setQuery("")
   }
 
   {/* For fetching movie genres */}
