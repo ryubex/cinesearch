@@ -32,91 +32,22 @@ function App() {
 
   return (
     <>
-      <div className='min-h-screen flex items-center justify-center bg-[#0B0D12]'>
-        <motion.div 
+      <div className='min-h-screen flex items-center justify-center bg-[#131317]'>
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className='bg-white rounded-2xl p-6 w-170 shadow-2xl'
+          className='bg-[#28272B] rounded-3xl p-6 w-112.5 shadow-2xl'
         >
+          
+          {/* Content Text */}
+          <div className=''>
 
-          {/* HEADER */}
-          <div className='flex justify-end smb-6'>
-            <input 
-              type="text"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter"}
-              placeholder='Search...'
-              className='px-3 py-1 rounded-full border text-sm outline-none
-                focus:ring-2 focus:ring-blue-200 w-48 focus:2-32 transition-all' 
-            />
-
-            <button
-              className='bg-blue-100 p-2 rounded-full hover:scale-100 transition
-              shrink-0'
-              disabled={loading}
-            >
-              <Search 
-                size={16} 
-                className={ loading ? "animate-pulse" : "" }
-              />
-            </button>
           </div>
 
-          {/* Main Content */}
-          <div 
-            className='relative bg-cover bg-center'
-            style = {{ 
-              backgroundImage = `url(gttps://image.tmdb.org/t/p/original${movie.backrdop_path})` 
-            }}
-          >
+          <div className='bg-[#]'>
 
-            { /* Dark overlay */}
-            <div className='absolute inset-0 bg-black/60' />
-
-            {/* Content */}
-            <div className='relative flex gap-8 p-8'>
-
-              {/* Movie Image */}
-              <div className='w-48 shrink-0'>
-                <img 
-                  src = { `https://image.tmdb.org/t/p/w500${movie.poster_path}` }  
-                  alt = {movie.title}
-                  className='w-full rounded-lg' 
-                />
-              </div>
-
-              {/* Movie Details */}
-              <div className='flex-1 text-white'>
-
-                {/* Title */}
-                <h1 className='text-4xl font-bold'>
-                  {movie.title}
-                </h1>
-
-                {/* Metadata */}
-                <div className='mt-4 flex items-center gap-3'>
-                  <span>⭐ {movie.vote_average}/10</span>
-                  <span>•</span>
-                  <span>{movie.release_date?.slice(0, 4)}</span>
-                  <span>•</span>
-                  <span>{genreNames?.join(", ")}</span>
-                  <span>{movie.runtime}</span>
-                </div>
-              </div>
-            
-              {/* Overview */}
-              <div className='mt-0 space-y-4'>
-                <p className='bg-black/70 p-3'>
-                  {movie.overview}
-                </p>
-
-              </div>
-
-            </div>
           </div>
-
         </motion.div>
       </div>
     </>
