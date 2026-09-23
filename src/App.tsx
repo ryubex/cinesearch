@@ -48,7 +48,7 @@ function App() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className='bg-[#28272B] rounded-2xl p-6 w-112.5 shadow-2xl 
+          className='bg-[#28272B] rounded-2xl p-4 w-112.5 shadow-2xl 
             flex flex-row items-center gap-2'
         >
           <Search size={16} className={`${loading ? "animate-pulse" : ""} text-[#D0A46C]`}
