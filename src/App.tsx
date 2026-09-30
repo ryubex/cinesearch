@@ -1,70 +1,19 @@
-import { useEffect, useState } from 'react'
-import { motion, moveItem } from "framer-motion"
-import { Search } from "lucide-react"
+import Navbar from './components/Navbar'
+import Footer from './components/Footer';
+import { Outlet } from 'react-router-dom';
 
-import { genres } from './genre'
-import { searchMovies, type Movie } from './API/tmdb'
-
+import { Routes, Route } from "react-router-dom";
 
 function App() {
 
-  const [query, setQuery] = useState("")
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [movie, setMovie] = useState<Movie[]>([])
-
-  
-    {/* API Usage */}
-    const handleSearch = async () => {
-      if (!query) return
-      try {
-        const movies = await searchMovies(query)
-
-        setMovie(movies)
-      } catch (error) {
-        setError("Failed to connect to the movie service.")
-      }
-      setQuery("")
-    }
-
-  {/* For fetching movie genres */}
-  const genreNames = movie.genre_ids?.map((id) = genres.find((genre) => genre.id === id)?.name).filter(Boolean)
-
   return (
     <>
-      <div className='min-h-screen flex flex-col items-center justify-center gap-8 bg-[#131317]'>
-        <div className='flex flex-col items-center'>
-          <p className='text-[#E4E1E8] text-3xl text-center font-serif font-medium w-70'>
-            Discover your next  
-            <span className='text-[#D0A46C] italic'> cinematic</span> obsession
-          </p>
-        
-          <p className='text-[#CED1E4] text-center text-xs w-50'>
-            Find your next favorite film, hidden gem,or cinematic masterpiece.
-          </p>
-        </div>
+      <Navbar />
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className='bg-[#28272B] rounded-2xl p-4 w-112.5 shadow-2xl 
-            flex flex-row items-center gap-2'
-        >
-          <Search size={16} className={`${loading ? "animate-pulse" : ""} text-[#D0A46C]`}/>
-          <input 
-            type="text"
-            value={query}
-            onChange={(e) => e.key === "Enter" && handleSearch()}
-            placeholder='Search for a movie...'
-            className='px-3 py-1 text-sm outline-none w-90 focus:2-32 transition-all
-              text-white placeholder:text-[#817466]' 
-          />
-          
-        </motion.div>
-      </div>
+      <Outlet />
+
+      <Footer />
     </>
   )
 }
-
 export default App

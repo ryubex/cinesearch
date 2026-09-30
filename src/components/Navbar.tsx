@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { Bookmark } from "lucide-react"
+import { Bookmark, CircleUserRound } from "lucide-react"
 
 export default function Navbar() {
 
@@ -12,7 +12,20 @@ export default function Navbar() {
             </link>
             
             <div className="gap-8">
-                <Bookmark size={16} className={`${loading ? "animate-pulse" : ""} text-[#E4E1E8]`}/>
+                <link>
+                    <Bookmark 
+                        size={16} 
+                        className={`${loading ? "animate-pulse" : ""} text-[#E4E1E8]`}
+                    />
+                </link>
+                
+                <link>
+                    <CircleUserRound 
+                        size={16} 
+                        className={`${loading ? "animate-pulse" : ""} text-[#E4E1E8]`}
+                    />
+                </link>
+
             </div>
         </nav>
     )
