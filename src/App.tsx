@@ -51,14 +51,13 @@ function App() {
           className='bg-[#28272B] rounded-2xl p-4 w-112.5 shadow-2xl 
             flex flex-row items-center gap-2'
         >
-          <Search size={16} className={`${loading ? "animate-pulse" : ""} text-[#D0A46C]`}
-/>
+          <Search size={16} className={`${loading ? "animate-pulse" : ""} text-[#D0A46C]`}/>
           <input 
             type="text"
             value={query}
             onChange={(e) => e.key === "Enter" && handleSearch()}
             placeholder='Search for a movie...'
-            className='px-3 py-1 text-sm outline-none focus:2-32 transition-all
+            className='px-3 py-1 text-sm outline-none w-90 focus:2-32 transition-all
               text-white placeholder:text-[#817466]' 
           />
           
