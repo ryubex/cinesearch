@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { motion, moveItem } from "framer-motion"
 import { Search } from "lucide-react"
 
-import { genres } from './genre'
-import { searchMovies, type Movie } from './API/tmdb'
+import { genres } from '../genre'
+import { searchMovies, type Movie } from '../API/tmdb'
 
 
 function App() {
