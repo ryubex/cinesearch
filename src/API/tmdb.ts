@@ -23,7 +23,7 @@ interface MovieSearchResponse {
 
 export async function searchMovies(query:string): Promise<Movie[]> {
     const response = await fetch(
-        `{TMDB_API_URL}/search/movie?query=${encodeURIComponent(query)}`,
+        `${TMDB_API_URL}/search/movie?query=${encodeURIComponent(query)}`,
         {
             method: "GET",
             headers: {
