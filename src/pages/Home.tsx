@@ -6,7 +6,7 @@ import { genres } from '../genre'
 import { searchMovies, type Movie } from '../API/tmdb'
 
 
-function App() {
+const Home = () => {
 
   const [query, setQuery] = useState("")
   const [loading, setLoading] = useState(false)
@@ -67,4 +67,4 @@ function App() {
   )
 }
 
-export default App
+export default Home
