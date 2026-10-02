@@ -55,7 +55,12 @@ const Home = () => {
           <input 
             type="text"
             value={query}
-            onChange={(e) => e.key === "Enter" && handleSearch()}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch()
+              }
+            }}
             placeholder='Search for a movie...'
             className='px-3 py-1 text-sm outline-none w-90 focus:2-32 transition-all
               text-white placeholder:text-[#817466]' 
