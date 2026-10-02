@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, moveItem } from "framer-motion"
 import { Search } from "lucide-react"
+import { useNavigate } from 'react-router-dom'
 
 import { genres } from '../genre'
 import { searchMovies, type Movie } from '../API/tmdb'
@@ -12,19 +13,14 @@ const Home = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [movie, setMovie] = useState<Movie[]>([])
+  
+  const navigate = useNavigate()
 
   
     {/* API Usage */}
     const handleSearch = async () => {
-      if (!query) return
-      try {
-        const movies = await searchMovies(query)
-
-        setMovie(movies)
-      } catch (error) {
-        setError("Failed to connect to the movie service.")
-      }
-      setQuery("")
+      if (!query.trim()) return
+      navigate(`/search?query=${encodeURIComponent(query.trim())}`)
     }
 
   {/* For fetching movie genres */}
@@ -52,7 +48,11 @@ const Home = () => {
             flex flex-row items-center gap-2'
         >
           <Search size={16} className={`${loading ? "animate-pulse" : ""} text-[#D0A46C]`}/>
-          <input 
+          <form onSubmit={(e) => {
+            e.preventDefault()
+            handleSearch()
+          }}>
+            <input 
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -65,7 +65,8 @@ const Home = () => {
             className='px-3 py-1 text-sm outline-none w-90 focus:2-32 transition-all
               text-white placeholder:text-[#817466]' 
           />
-          
+          </form>
+
         </motion.div>
       </div>
     </>

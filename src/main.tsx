@@ -6,6 +6,7 @@ import './index.css'
 
 import App from './App.tsx'
 import Home from "./pages/Home"
+import Searched from './pages/Searched.tsx'
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />
       },
+
+      {
+        path: "search",
+        element: <Searched />
+      }
     ]
   }
 ])

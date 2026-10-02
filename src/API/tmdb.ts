@@ -34,7 +34,13 @@ export async function searchMovies(query:string): Promise<Movie[]> {
     )
 
     if (!response.ok) {
-        throw new Error("Failed to fetch movies")
+        const errorData = await response.text()
+
+        console.error("TMDB error:", response.status, errorData)
+
+        throw new Error(
+            `TMDB request failed: ${response.status}`
+        )
     }
 
     const data: MovieSearchResponse = await response.json()
