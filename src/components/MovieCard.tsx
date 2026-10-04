@@ -11,7 +11,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
         <article className="min-w-0 overflow-hidden rounded-2xl bg-[#1b1b20] text-white shadow-2xl">
 
             {/* Poster */}
-            <div className="relative aspect-[2/3] w-full overflow-hidden">
+            <div className="relative aspect-2/3 w-full overflow-hidden">
                 <img
                     src={
                         movie.poster_path
@@ -23,7 +23,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
                 />
 
                 {/* Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80">
+                <div className="absolute inset-0 bg-linear-to-b from-black/50 via-transparent to-black/80">
 
                     {/* Rating */}
                     <div className="absolute left-3 top-3 flex items-center gap-1">
@@ -49,10 +49,10 @@ export default function MovieCard({ movie }: MovieCardProps) {
             {/* Metadata */}
             <div className="min-w-0 p-3 sm:p-4">
 
-                {/* Date + Genre */}
+                {/* Date & Genre */}
                 <div className="flex min-w-0 items-center gap-1.5 text-xs">
                     <span className="shrink-0 font-bold text-amber-400">
-                        {movie.release_date}
+                        {movie.release_date ? movie.release_date.slice(0, 4) : "N/A"}
                     </span>
 
                     <span className="shrink-0 text-white/40">
