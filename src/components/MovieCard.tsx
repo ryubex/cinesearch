@@ -1,7 +1,6 @@
 import { Bookmark } from "lucide-react"
 
-import type { Movie } from "../API/tmdb";
-import { genres } from "../genre"
+import type { Movie } from "../API/tmdb"
 
 interface MovieCardProps {
     movie: Movie
@@ -9,10 +8,10 @@ interface MovieCardProps {
 
 export default function MovieCard({ movie }: MovieCardProps) {
     return (
-        <div className="flex h-[350px] w-[180px] flex-col overflow-hidden rounded-2xl bg-[#1b1b20] text-white shadow-2xl">
+        <article className="min-w-0 overflow-hidden rounded-2xl bg-[#1b1b20] text-white shadow-2xl">
 
-            {/* Movie Poster */}
-            <div className="relative aspect-[2/3] w-full shrink-0 overflow-hidden">
+            {/* Poster */}
+            <div className="relative aspect-[2/3] w-full overflow-hidden">
                 <img
                     src={
                         movie.poster_path
@@ -27,39 +26,49 @@ export default function MovieCard({ movie }: MovieCardProps) {
                 <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80">
 
                     {/* Rating */}
-                    <div className="absolute left-4 top-4 flex items-center gap-1.5">
-                        <span className="text-lg text-amber-200">⭐</span>
-                        <span className="text-sm font-semibold">
+                    <div className="absolute left-3 top-3 flex items-center gap-1">
+                        <span className="text-lg text-amber-200">
+                            ⭐
+                        </span>
+
+                        <span className="text-xs font-semibold sm:text-sm">
                             {movie.vote_average.toFixed(2)}
                         </span>
                     </div>
 
                     {/* Bookmark */}
-                    <button className="absolute right-4 top-4 rounded-full bg-black/30 p-2 backdrop-blur-sm">
-                        <Bookmark size={20} />
+                    <button
+                        className="absolute right-3 top-3 rounded-full bg-black/30 p-2 backdrop-blur-sm"
+                        aria-label={`Bookmark ${movie.title}`}
+                    >
+                        <Bookmark size={18} />
                     </button>
                 </div>
             </div>
 
             {/* Metadata */}
-            <div className="flex min-h-0 flex-1 flex-col px-4 py-3">
-                
-                <div className="flex items-start gap-2 text-xs">
+            <div className="min-w-0 p-3 sm:p-4">
+
+                {/* Date + Genre */}
+                <div className="flex min-w-0 items-center gap-1.5 text-xs">
                     <span className="shrink-0 font-bold text-amber-400">
                         {movie.release_date}
                     </span>
 
-                    <span className="text-white/40">•</span>
+                    <span className="shrink-0 text-white/40">
+                        •
+                    </span>
 
-                    <span className="min-w-0 truncate text-white/60">
+                    <span className="truncate text-white/60">
                         Sci-Fi / Mystery
                     </span>
                 </div>
 
-                <h4 className="mt-2 line-clamp-2 overflow-hidden font-serif text-lg leading-tight">
+                {/* Title */}
+                <h4 className="mt-2 line-clamp-2 font-serif text-base leading-tight sm:text-lg">
                     {movie.title}
                 </h4>
             </div>
-        </div>
+        </article>
     )
 }
