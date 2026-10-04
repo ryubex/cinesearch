@@ -44,7 +44,7 @@ const Searched = () => {
     }
 
     return (
-        <main>
+        <main className="bg-[#131317] min-h-[calc(100dvh-4rem)]">
             <h1>Search results for "{query}"</h1>
 
             <div>
