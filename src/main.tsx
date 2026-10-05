@@ -7,6 +7,7 @@ import './index.css'
 import App from './App.tsx'
 import Home from "./pages/Home"
 import Searched from './pages/Searched.tsx'
+import MovieInfo from './pages/MovieInfo.tsx'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ const router = createBrowserRouter([
       {
         path: "search",
         element: <Searched />
+      },
+
+      {
+        path: "info",
+        element: <MovieInfo />
       }
     ]
   }
