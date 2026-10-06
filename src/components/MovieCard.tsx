@@ -1,12 +1,16 @@
 import { Bookmark } from "lucide-react"
 
 import type { Movie } from "../API/tmdb"
+import { getGenreNames } from "../genre"
+
 
 interface MovieCardProps {
     movie: Movie
 }
 
 export default function MovieCard({ movie }: MovieCardProps) {
+    const genreNames = getGenreNames(movie.genre_ids).slice(0, 2)
+
     return (
         <article className="min-w-0 overflow-hidden rounded-2xl bg-[#1b1b20] text-white shadow-2xl">
 
@@ -60,7 +64,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
                     </span>
 
                     <span className="truncate text-white/60">
-                        Sci-Fi / Mystery
+                        {genreNames.join(" / ")}
                     </span>
                 </div>
 

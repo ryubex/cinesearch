@@ -5,7 +5,7 @@ export const genres = [
     },
     {
       "id": 12,
-      "name": "Abenteuer"
+      "name": "Adventure"
     },
     {
       "id": 16,
@@ -13,15 +13,15 @@ export const genres = [
     },
     {
       "id": 35,
-      "name": "Komödie"
+      "name": "Comedy"
     },
     {
       "id": 80,
-      "name": "Krimi"
+      "name": "Crime"
     },
     {
       "id": 99,
-      "name": "Dokumentarfilm"
+      "name": "Documentary"
     },
     {
       "id": 18,
@@ -29,7 +29,7 @@ export const genres = [
     },
     {
       "id": 10751,
-      "name": "Familie"
+      "name": "Family"
     },
     {
       "id": 14,
@@ -37,7 +37,7 @@ export const genres = [
     },
     {
       "id": 36,
-      "name": "Historie"
+      "name": "History"
     },
     {
       "id": 27,
@@ -45,7 +45,7 @@ export const genres = [
     },
     {
       "id": 10402,
-      "name": "Musik"
+      "name": "Music"
     },
     {
       "id": 9648,
@@ -53,11 +53,11 @@ export const genres = [
     },
     {
       "id": 10749,
-      "name": "Liebesfilm"
+      "name": "Romance"
     },
     {
       "id": 878,
-      "name": "Science Fiction"
+      "name": "Sci Fi"
     },
     {
       "id": 10770,
@@ -69,10 +69,16 @@ export const genres = [
     },
     {
       "id": 10752,
-      "name": "Kriegsfilm"
+      "name": "War Film"
     },
     {
       "id": 37,
       "name": "Western"
     }
 ]
+
+export function getGenreNames(genreIds: number[]): string[] {
+  return genreIds
+  .map((id) => genres.find((genre) => genre.id === id)?.name)
+  .filter((name): name is string => Boolean(name))
+}
